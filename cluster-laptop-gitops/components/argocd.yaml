@@ -9,7 +9,7 @@ spec:
   project: gitops
   source:
     repoURL: https://github.com/argoproj/argo-cd.git
-    targetRevision: v2.3.2
+    targetRevision: stable
     path: argo-cd/manifests/install.yaml
   destination:
     server: https://kubernetes.default.svc
