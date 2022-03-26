@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server
+  namespace: argocd
+  
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /argocd
+            pathType: Exact
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
