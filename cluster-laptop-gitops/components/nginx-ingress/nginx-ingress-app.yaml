@@ -10,7 +10,8 @@ spec:
   source:
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.*
-    helm:
+    chart: ingress-nginx  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+    helm: 
       releaseName: ingress-nginx
   destination:
     server: https://kubernetes.default.svc
