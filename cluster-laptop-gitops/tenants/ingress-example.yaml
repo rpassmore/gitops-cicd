@@ -42,12 +42,13 @@ metadata:
   namespace: test
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
   - host: my.host.localhost
     http:
       paths:
-        - path: /test
+        - path: /test(/|$)(.*)
           pathType: Prefix
           backend:
             service:
