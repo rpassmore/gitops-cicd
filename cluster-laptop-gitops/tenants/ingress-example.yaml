@@ -44,7 +44,8 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - http:
+  - host: my.host.localhost
+    http:
       paths:
         - path: /
           pathType: Prefix
