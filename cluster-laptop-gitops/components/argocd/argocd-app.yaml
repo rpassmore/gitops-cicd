@@ -8,7 +8,7 @@ metadata:
 spec:
   project: gitops
   source:
-    repoURL: https://kubernetes.github.io/ingress-nginx
+    repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 4.3.*
     chart: argo/argo-cd  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
     helm: 
