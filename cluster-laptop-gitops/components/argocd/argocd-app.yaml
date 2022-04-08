@@ -8,9 +8,13 @@ metadata:
 spec:
   project: gitops
   source:
+    # repoURL: https://github.com/argoproj/argo-cd.git
+    # targetRevision: stable
+    # path: manifests/install.yaml
+
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 4.3.*
-    chart: argo/argo-cd  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+    chart: argo-cd  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
     helm: 
       releaseName: argocd
   destination:
