@@ -9,8 +9,8 @@ spec:
   project: components
   source:
     repoURL: https://traefik.github.io/charts
-    targetRevision: "20.5.3"
-    chart: traefik/traefik  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+    targetRevision: "*"
+    chart: traefik  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
     helm: 
       releaseName: traefik
   destination:
