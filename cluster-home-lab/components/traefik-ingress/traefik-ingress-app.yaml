@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-ingress-controller
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: components
+  source:
+    repoURL: https://traefik.github.io/charts
+    targetRevision: "20.5.3"
+    chart: traefik/traefik  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+    helm: 
+      releaseName: traefik
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true    
