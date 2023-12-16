@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metalb
+  name: metallb
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,13 +13,16 @@ spec:
     chart: metallb
     helm: 
       #releaseName: metallb
-      values: |
-        configInline:
-          address-pools:
-            - name: default
-              protocol: layer2
-              addresses:
-               - 192.168.1.220/24
+      # values: |
+      #   configInline:
+      #     address-pools:
+      #       - name: default
+      #         protocol: layer2
+      #         addresses:
+      #          - 192.168.1.220/24
+    directory:
+      recurse: true
+      include: "metallb-config.yaml"  
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
