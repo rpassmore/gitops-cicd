@@ -20,9 +20,9 @@ spec:
       #         protocol: layer2
       #         addresses:
       #          - 192.168.1.220/24
-    directory:
-      recurse: true
-      include: "metallb-config.yaml"  
+    # directory:
+    #   recurse: true
+    #   include: "metallb-config.yaml"  
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
