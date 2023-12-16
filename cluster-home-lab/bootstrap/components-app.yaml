@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rpassmore/gitops-cicd.git
     targetRevision: HEAD
-    path: cluster-home-labcomponents
+    path: cluster-home-lab/components
     directory:
       recurse: true
   destination:
