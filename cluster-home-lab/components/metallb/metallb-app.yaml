@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://metallb.github.io/metallb
     targetRevision: "*"
-    chart: metallb
+    chart: metallb/metallb
     helm: 
       releaseName: metallb
       # values: |
