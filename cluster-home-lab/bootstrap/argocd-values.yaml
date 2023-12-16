@@ -1,6 +1,6 @@
 server:
   ingress:
-    enabled: true
+    enabled: false
 
 configs:
   params:

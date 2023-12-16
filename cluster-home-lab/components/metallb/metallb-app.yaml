@@ -12,7 +12,7 @@ spec:
     targetRevision: "*"
     chart: metallb
     helm: 
-      #releaseName: metallb
+      releaseName: metallb
       # values: |
       #   configInline:
       #     address-pools:
