@@ -9,8 +9,8 @@ spec:
   project: components
   source:
     repoURL: https://metallb.github.io/metallb
-    targetRevision: "*"
-    chart: metallb/metallb
+    targetRevision: "0.13.*"
+    chart: metallb
     helm: 
       releaseName: metallb
       # values: |
