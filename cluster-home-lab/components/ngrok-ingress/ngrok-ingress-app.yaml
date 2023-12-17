@@ -19,7 +19,7 @@ spec:
             name: "ngrok-access-secret" # set this to the secret for hashicorp vault hcp vault secrets
   destination:
     server: https://kubernetes.default.svc
-    namespace: ingress
+    namespace: ngrok-ingress
   syncPolicy:
     automated:
       prune: true
