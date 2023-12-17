@@ -16,7 +16,7 @@ kubectl create namespace vault-secrets-operator-system
 
 ```
  kubectl create secret generic vso-demo-sp \
-    --namespace vault-secrets-operator-system \
+    --namespace ingress \
     --from-literal=clientID=$HCP_CLIENT_ID \
     --from-literal=clientSecret=$HCP_CLIENT_SECRET
 ```
