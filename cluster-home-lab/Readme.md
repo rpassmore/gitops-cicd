@@ -1,29 +1,26 @@
-Cluster setup fur Talos on Raspberry pi 4
+Cluster setup fur Talos on HomeLab
 
+Setup argocd cd:
 
+Setup Hashicorp HCP vault secrets [https://developer.hashicorp.com/vault/tutorials/hcp-vault-secrets-get-started/kubernetes-vso]
+
+The `hashicorp/vault-secrets-operator` should be installed by argocd.
+
+But the secrets used to access the Hashicorp hcp vault secrets need to be manually setup.
+
+Get the `HCP_CLIENT_ID` & `HCP_CLIENT_SECRET` from [https://portal.cloud.hashicorp.com/services/secrets/apps/home-lab/secrets?importActive=false&project_id=ff6aae5e-b7f0-4ca4-a9b5-a3fabb71a864]
+Create a Kubernetes secret for the HCP service principal credentials.
+```
+kubectl create namespace vault-secrets-operator-system
+```
 
 ```
-NAME: argocd
-LAST DEPLOYED: Sat Dec 16 13:10:12 2023
-NAMESPACE: argocd
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-NOTES:
-In order to access the server UI you have the following options:
-
-1. kubectl port-forward service/argocd-server -n argocd 8080:443
-
-    and then open the browser on http://localhost:8080 and accept the certificate
-
-2. enable ingress in the values file `server.ingress.enabled` and either
-      - Add the annotation for ssl passthrough: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough
-      - Set the `configs.params."server.insecure"` in the values file and terminate SSL at your ingress: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
-
-
-After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:
-
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-
-(You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
+ kubectl create secret generic vso-demo-sp \
+    --namespace vault-secrets-operator-system \
+    --from-literal=clientID=$HCP_CLIENT_ID \
+    --from-literal=clientSecret=$HCP_CLIENT_SECRET
+```
+Example output:
+```
+secret/vso-demo-sp created
 ```
