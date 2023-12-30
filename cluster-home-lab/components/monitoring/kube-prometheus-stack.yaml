@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: monitoring
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: "55.5.*"
+    chart: kube-prometheus-stack
+    helm: 
+      releaseName: kube-prometheus
+      values: |
+        # disble crds to install from seperate chart to allow server side apply
+        crds:
+          enabled: false
+        alertmanager:
+          enabled: false
+        kubeStateMetrics:
+          enabled: true
+        nodeExporter:
+          enabled: true
+        namespaceOverride: "monitoring"
+        grafana:
+          grafana.ini:
+            server:
+              domain: apollo.example.com
+              root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+              serve_from_sub_path: true
+          ingress:
+            enabled: true
+            ingressClassName: traefik
+            annotations: 
+              traefik.ingress.kubernetes.io/router.entrypoints: web
+            hosts: []
+            pathType: Prefix
+            path: /grafana  
+          sidecar:
+            dashboards:
+              enabled: true
+              defaultFolderName: "General"
+              label: grafana_dashboard
+              labelValue: "1"
+              folderAnnotation: grafana_folder
+              searchNamespace: ALL
+              provider:
+                foldersFromFilesStructure: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    managedNamespaceMetadata:
+      labels: # The labels to set on the application namespace
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    

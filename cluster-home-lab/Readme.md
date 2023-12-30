@@ -1,4 +1,4 @@
-Cluster setup fur Talos on HomeLab
+Cluster setup for Talos on HomeLab
 
 Setup argocd cd:
 
