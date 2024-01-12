@@ -3,5 +3,7 @@ server:
     enabled: false
   rootpath: /argocd/
 configs:
+  cm:
+    application.instanceLabelKey: argocd.argoproj.io/instance
   params:
     server.insecure: true
