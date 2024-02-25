@@ -2,7 +2,7 @@ Cluster setup for Talos on HomeLab
 
 Setup argocd cd:
 
-Setup Hashicorp HCP vault secrets [https://developer.hashicorp.com/vault/tutorials/hcp-vault-secrets-get-started/kubernetes-vso]
+Setup Hashicorp HCP vault secrets via the web [https://developer.hashicorp.com/vault/tutorials/hcp-vault-secrets-get-started/kubernetes-vso]
 
 The `hashicorp/vault-secrets-operator` should be installed by argocd.
 
@@ -13,6 +13,8 @@ Create a Kubernetes secret for the HCP service principal credentials.
 ```
 kubectl create namespace ngrok-ingress
 ```
+
+Need to create the vso-demo-sp in every namespace we want to use the HCP vault secrets in
 
 ```
  kubectl create secret generic vso-demo-sp \
